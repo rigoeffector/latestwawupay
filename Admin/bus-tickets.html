@@ -35,7 +35,7 @@
 				
 </head>
 
-<body class="adminbody">
+<body class="adminbody" id="busesBody">
 		
 <div id="main">
 
@@ -100,7 +100,7 @@
                                 </a>
 
                                 <!-- item-->
-                                <a href="#" class="dropdown-item notify-item">
+                                <a href="home.html" class="dropdown-item notify-item">
                                     <i class="fa fa-power-off"></i> <span>Logout</span>
                                 </a>
                             </div>
@@ -172,7 +172,7 @@
 			<span aria-hidden="true">&times;</span>
 		  </button>
 		</div>
-		<div class="modal-body">
+		<div class="modal-body" id="more_info">
 		 
 		</div>
 		<div class="modal-footer">
@@ -218,12 +218,16 @@
 							<div class="card-body">								
 								<div>
 								Toggle columns (click to show / hide columns): 
-								<a href="#" class="toggle-vis" data-column="0"><b>Name</b></a> | 
-								<a href="#" class="toggle-vis" data-column="1"><b>Position</b></a> | 
-								<a href="#" class="toggle-vis" data-column="2"><b>Office</b></a> | 
-								<a href="#" class="toggle-vis" data-column="3"><b>Age</b></a> | 
-								<a href="#" class="toggle-vis" data-column="4"><b>Start date</b></a> | 
-								<a href="#" class="toggle-vis" data-column="5"><b>Salary</b></a>
+								<a href="#" class="toggle-vis" data-column="0"><b>Ref no</b></a> | 
+								<a href="#" class="toggle-vis" data-column="1"><b>Customer Name</b></a> | 
+								<a href="#" class="toggle-vis" data-column="2"><b>Phone Number</b></a> | 
+								<a href="#" class="toggle-vis" data-column="3"><b>Destination</b></a> | 
+								<a href="#" class="toggle-vis" data-column="4"><b>Date</b></a> | 
+								<a href="#" class="toggle-vis" data-column="5"><b>Time</b></a>|
+								<a href="#" class="toggle-vis" data-column="4"><b>Agent</b></a> | 
+								<a href="#" class="toggle-vis" data-column="5"><b>Total</b></a>|
+								<a href="#" class="toggle-vis" data-column="4"><b>Payment Status</b></a> | 
+								
 								</div>
 								
 								<div class="table-responsive">
@@ -243,209 +247,8 @@
 									</tr>
 								</thead>									
 								<tbody>
-									<tr><td>111145445P</td>
-										<td>Tiger Nixon</td>
-										<td>0785412320</td>
-										<td>Edinburgh</td>
-										<td>2011/04/25</td>
-										<td>12:30 AM</td>
-										<td>NYABUGO</td>
-										<td>$320,800</td>
-										<td>PAYED</td>
-										<td><button class="btn btn-primary" data-toggle="modal" data-target="#exampleModal">More</button></td>
-									</tr>									
-									<tr>
-										<td>111145445P</td>
-										<td>Tiger Nixon</td>
-										<td>0785412320</td>
-										<td>Edinburgh</td>
-										<td>2011/04/25</td>
-										<td>12:30 AM</td>
-										<td>NYABUGO</td>
-										<td>$320,800</td>
-										<td>PAYED</td>
-										<td><button class="btn btn-primary">More</button></td>
-									</tr>
-									<tr>
-											<td>111145445P</td>
-											<td>Tiger Nixon</td>
-											<td>0785412320</td>
-											<td>Edinburgh</td>
-											<td>2011/04/25</td>
-											<td>12:30 AM</td>
-											<td>NYABUGO</td>
-											<td>$320,800</td>
-											<td>PAYED</td>
-											<td><button class="btn btn-primary">More</button></td>
-									</tr>
-									<tr>
-											<td>111145445P</td>
-										<td>Tiger Nixon</td>
-										<td>0785412320</td>
-										<td>Edinburgh</td>
-										<td>2011/04/25</td>
-										<td>12:30 AM</td>
-										<td>NYABUGO</td>
-										<td>$320,800</td>
-										<td>PAYED</td>
-										<td><button class="btn btn-primary">More</button></td>
-									</tr>									
-									<tr>
-											<td>111145445P</td>
-										<td>Tiger Nixon</td>
-										<td>0785412320</td>
-										<td>Edinburgh</td>
-										<td>2011/04/25</td>
-										<td>12:30 AM</td>
-										<td>NYABUGO</td>
-										<td>$320,800</td>
-										<td>PAYED</td>
-										<td><button class="btn btn-primary">More</button></td>
-									</tr>
-									<tr>
-										<td>111145445P</td>
-										<td>Tiger Nixon</td>
-										<td>0785412320</td>
-										<td>Edinburgh</td>
-										<td>2011/04/25</td>
-										<td>12:30 AM</td>
-										<td>NYABUGO</td>
-										<td>$320,800</td>
-										<td>PAYED</td>
-										<td><button class="btn btn-primary">More</button></td>
-									</tr>
-									<tr>
-										<td>111145445P</td>
-										<td>Tiger Nixon</td>
-										<td>0785412320</td>
-										<td>Edinburgh</td>
-										<td>2011/04/25</td>
-										<td>12:30 AM</td>
-										<td>NYABUGO</td>
-										<td>$320,800</td>
-										<td>PAYED</td>
-										<td><button class="btn btn-primary">More</button></td>
-									</tr>
-									<tr>
-										<td>111145445P</td>
-										<td>Tiger Nixon</td>
-										<td>0785412320</td>
-										<td>Edinburgh</td>
-										<td>2011/04/25</td>
-										<td>12:30 AM</td>
-										<td>NYABUGO</td>
-										<td>$320,800</td>
-										<td>PAYED</td>
-										<td><button class="btn btn-primary">More</button></td>
-									</tr>
-									<tr>
-										<td>111145445P</td>
-										<td>Tiger Nixon</td>
-										<td>0785412320</td>
-										<td>Edinburgh</td>
-										<td>2011/04/25</td>
-										<td>12:30 AM</td>
-										<td>NYABUGO</td>
-										<td>$320,800</td>
-										<td>PAYED</td>
-										<td><button class="btn btn-primary">More</button></td>
-									</tr>
-									<tr>
-											<td>111145445P</td>
-											<td>Tiger Nixon</td>
-											<td>0785412320</td>
-											<td>Edinburgh</td>
-											<td>2011/04/25</td>
-											<td>12:30 AM</td>
-											<td>NYABUGO</td>
-											<td>$320,800</td>
-											<td>PAYED</td>
-											<td><button class="btn btn-primary">More</button></td>
-									</tr>
-									<tr>
-											<td>111145445P</td>
-											<td>Tiger Nixon</td>
-											<td>0785412320</td>
-											<td>Edinburgh</td>
-											<td>2011/04/25</td>
-											<td>12:30 AM</td>
-											<td>NYABUGO</td>
-											<td>$320,800</td>
-											<td>PAYED</td>
-											<td><button class="btn btn-primary">More</button></td>
-									</tr>
-									<tr>
-											<td>111145445P</td>
-											<td>Tiger Nixon</td>
-											<td>0785412320</td>
-											<td>Edinburgh</td>
-											<td>2011/04/25</td>
-											<td>12:30 AM</td>
-											<td>NYABUGO</td>
-											<td>$320,800</td>
-											<td>PAYED</td>
-											<td><button class="btn btn-primary">More</button></td>
-									</tr>
-									<tr>
-											<td>111145445P</td>
-											<td>Tiger Nixon</td>
-											<td>0785412320</td>
-											<td>Edinburgh</td>
-											<td>2011/04/25</td>
-											<td>12:30 AM</td>
-											<td>NYABUGO</td>
-											<td>$320,800</td>
-											<td>PAYED</td>
-											<td><button class="btn btn-primary">More</button></td>
-									</tr>
-									<tr>
-											<td>111145445P</td>
-											<td>Tiger Nixon</td>
-											<td>0785412320</td>
-											<td>Edinburgh</td>
-											<td>2011/04/25</td>
-											<td>12:30 AM</td>
-											<td>NYABUGO</td>
-											<td>$320,800</td>
-											<td>PAYED</td>
-											<td><button class="btn btn-primary">More</button></td>
-									</tr>
-									<tr>
-											<td>111145445P</td>
-											<td>Tiger Nixon</td>
-											<td>0785412320</td>
-											<td>Edinburgh</td>
-											<td>2011/04/25</td>
-											<td>12:30 AM</td>
-											<td>NYABUGO</td>
-											<td>$320,800</td>
-											<td>PAYED</td>
-											<td><button class="btn btn-primary">More</button></td>
-									</tr>
-									<tr>
-											<td>111145445P</td>
-											<td>Tiger Nixon</td>
-											<td>0785412320</td>
-											<td>Edinburgh</td>
-											<td>2011/04/25</td>
-											<td>12:30 AM</td>
-											<td>NYABUGO</td>
-											<td>$320,800</td>
-											<td>PAYED</td>
-											<td><button class="btn btn-primary">More</button></td>
-									</tr>
-									<tr>
-											<td>111145445P</td>
-											<td>Tiger Nixon</td>
-											<td>0785412320</td>
-											<td>Edinburgh</td>
-											<td>2011/04/25</td>
-											<td>12:30 AM</td>
-											<td>NYABUGO</td>
-											<td>$320,800</td>
-											<td>PAYED</td>
-											<td><button class="btn btn-primary">More</button></td>
-									</tr>
+																	
+									
 								</tbody>
 								</table>
 								</div>
@@ -522,6 +325,72 @@
 				// Toggle the visibility
 				column.visible( ! column.visible() );
 			} );
+// t retrieve Data in table
+$.ajax({
+				url:"http://localhost:8097/tickets/all",
+				method:"post",
+				dataType:"json",
+				success:function(data){
+					console.log(data);
+					for(var top in data.RETURN_DATA.data){
+            // tables.row.add([data.RETURN_DATA.data[top].amount]);
+			$("#example3").DataTable().row.add([data.RETURN_DATA.data[top].id,
+			data.RETURN_DATA.data[top].customerName,
+			data.RETURN_DATA.data[top].phoneNumber,
+			data.RETURN_DATA.data[top].destination,
+			data.RETURN_DATA.data[top].date,
+			data.RETURN_DATA.data[top].time,
+			data.RETURN_DATA.data[top].agent,
+			data.RETURN_DATA.data[top].totalAmount,
+			data.RETURN_DATA.data[top].paymentStatus,
+			'<button class="more btn btn-primary" data-toggle="modal" data-target="#exampleModal" data-id="'+data.RETURN_DATA.data[top].ticketId+'">Details</button>']).draw();}
+//  to retieve details of one row
+$(".more").click(function(){
+	$("#more_info").empty();
+	var ids = $(this).data('id');
+	// console.log(ids);
+	$.ajax({
+	url:"http://localhost:8097/tickets/info",
+	method:"POST",
+	data:"ticketId="+ids,
+	dataType:"json",
+	success:function(data){
+		console.log(data);
+			$('#more_info').append('<div class="col-md-12">\n'+
+					'<div class="header_info">\n'+
+						'<div class="row">\n'+
+						'<div class="col-md-6"><label>Customer Reference Number</label></div><div class="col-md-6"><h5>'+data.RETURN_DATA.data.id+'</h5></div>\n'+
+						'<hr><div class="col-md-6"><label>UserName</label></div><div class="col-md-6"><h5>Nta column ihari</h5></div>\n'+
+						'<div class="col-md-6"><label>Customer Phone Number</label></div><div class="col-md-6"><h5>'+data.RETURN_DATA.data.phoneNumber+'</h5></div>\n'+
+						'<div class="col-md-6"><label>Customer Name </label></div><div class="col-md-6"><h5>'+data.RETURN_DATA.data.customerName+'</h5></div>\n'+
+						'<div class="col-md-6"><label>Destination </label></div><div class="col-md-6"><h5>'+data.RETURN_DATA.data.destination+' </h5></div>\n'+
+						'<div class="col-md-6"><label>Date and Time </label></div><div class="col-md-6"><h5>'+data.RETURN_DATA.data.cT+' </h5></div>\n'+
+						'<div class="col-md-6"><label>Agent Name</label></div><div class="col-md-6"><h5>'+data.RETURN_DATA.data.agent+'</h5></div>\n'+
+						'<div class="col-md-6"><label>POC Number</label></div><div class="col-md-6"><h5>'+data.RETURN_DATA.data.posId+'</h5></div>\n'+
+						'<div class="col-md-6"><label>Time to leave</label></div><div class="col-md-6"><h5>'+data.RETURN_DATA.data.tt+'</h5></div>\n'+
+						'<div class="col-md-12 luggage"><h4>Flag Luggage</h4><div class="row">\n'+
+								'<div class="col-md-6"><label>Flag luggage Quantity</label></div><div class="col-md-6"><h5>'+data.RETURN_DATA.data.flagLuggage+'</h5></div>\n'+
+								'<div class="col-md-6"><label>Flag luggage Unit Price</label></div><div class="col-md-6"><h5>Nta Column ihari</h5></div>\n'+
+								'<div class="col-md-6"><label>Flag luggage Amount</label></div><div class="col-md-6"><h5>'+data.RETURN_DATA.data.luggagePrice+'</h5></div>\n'+
+						'</div></div>\n'+
+						
+						'<div class="col-md-6"><label>Ticket Status</label></div><div class="col-md-6"><h5>Nta column ihari</h5></div>\n'+
+						'<div class="col-md-6"><label>Ticket Created time</label></div><div class="col-md-6"><h5>'+data.RETURN_DATA.data.cT+'</h5></div>\n'+
+						'<div class="col-md-6"><label>Plate Number</label></div><div class="col-md-6"><h5>'+data.RETURN_DATA.data.plate+'</h5></div>\n'+
+						'<div class="col-md-6"><label>Channel</label></div><div class="col-md-6"><h5>'+data.RETURN_DATA.data.channel+'</h5></div>\n'+
+						'<div class="col-md-6"><label>Total Amount</label></div><div class="col-md-6"><h5>'+data.RETURN_DATA.data.totalAmount+'&nbsp;Rwf</h5></div>\n'+
+						'<div class="col-md-6"><label>Payment Status</label></div><div class="col-md-6"><h5>'+data.RETURN_DATA.data.paymentStatus+'</h5></div>\n'+
+						'<div class="col-md-6"><label>Payment time</label></div><div class="col-md-6"><h5>'+data.RETURN_DATA.data.paymentTime+'</h5></div>\n'+
+					'</div></div>\n'+
+				'</div>');
+	}
+}).error(function(error){
+	console.log(error);
+});
+});
+
+				}
+			});
 		} );
 		// END CODE Show / hide columns dynamically DATA TABLE 		 	
 	</script>	

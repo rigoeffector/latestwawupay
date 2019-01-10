@@ -1,0 +1,1153 @@
+{
+	"info": {
+		"_postman_id": "73c94845-1ad7-4c8e-907c-8d491e52b946",
+		"name": "new App",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "get",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {},
+				"url": {
+					"raw": "localhost:8080/eticketcore/auth",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"eticketcore",
+						"auth"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "localhost:8087/tickets/create",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"ticketId\":\"49\",\n\t\"userId\":\"23\",\n\t\"phoneNumber\":\"073567\",\n\t\"customerName\":\"ssss\",\n\t\"destination\":\"rusizi\",\n\t\"date\":\"2018\",\n\t\"time\":\"5\",\n\t\"agent\":\"34\",\n\t\"tt\":\"23\",\n\t\"posId\":\"776\",\n\t\"plate\":\"vv\",\n\t\"channel\":\"123\",\n\t\"flagLuggage\":\"q22\",\n\t\"kg\":\"223\",\n\t\"status\":\"1\",\n\t\"price\":\"200\",\n\t\"luggagePrice\":\"223\",\n\t\"totalAmount\":\"33332\",\n\t\"paymentStatus\":\"2234\",\n\t\"printStatus\":\"233\",\n\t\"rCreateTime\":\"2018-10-05\",\n\t\"rPaymentTime\":\"2018-10-05\"\n\t\n}"
+				},
+				"url": {
+					"raw": "localhost:8087/tickets/create",
+					"host": [
+						"localhost"
+					],
+					"port": "8087",
+					"path": [
+						"tickets",
+						"create"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "localhost:8087/tickets/info",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "ticketId",
+							"value": "49",
+							"type": "text"
+						}
+					]
+				},
+				"url": {
+					"raw": "localhost:8097/tickets/info",
+					"host": [
+						"localhost"
+					],
+					"port": "8097",
+					"path": [
+						"tickets",
+						"info"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "getalltickets",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": ""
+				},
+				"url": {
+					"raw": "localhost:8097/tickets/tickets",
+					"host": [
+						"localhost"
+					],
+					"port": "8097",
+					"path": [
+						"tickets",
+						"tickets"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "cancelingTicket",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "ticketId",
+							"value": "48",
+							"type": "text"
+						}
+					]
+				},
+				"url": {
+					"raw": "localhost:8097/tickets/cancel",
+					"host": [
+						"localhost"
+					],
+					"port": "8097",
+					"path": [
+						"tickets",
+						"cancel"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "count",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "userId",
+							"value": "23",
+							"type": "text"
+						}
+					]
+				},
+				"url": {
+					"raw": "localhost:8097/tickets/count",
+					"host": [
+						"localhost"
+					],
+					"port": "8097",
+					"path": [
+						"tickets",
+						"count"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "changePayStatus",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"ticketId\":\"49\"\n}"
+				},
+				"url": {
+					"raw": "localhost:8097/tickets/paystatus1",
+					"host": [
+						"localhost"
+					],
+					"port": "8097",
+					"path": [
+						"tickets",
+						"paystatus1"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "printstatus",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"ticketId\":\"48\"\n}"
+				},
+				"url": {
+					"raw": "localhost:8087/tickets/printstatus",
+					"host": [
+						"localhost"
+					],
+					"port": "8087",
+					"path": [
+						"tickets",
+						"printstatus"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "changeRefound",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"ticketId\":\"48\"\n}"
+				},
+				"url": {
+					"raw": "localhost:8087/tickets/paystatus2",
+					"host": [
+						"localhost"
+					],
+					"port": "8087",
+					"path": [
+						"tickets",
+						"paystatus2"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "createElectricityBill",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t        \"amount\": 4800,\n            \"kwt\": 16,\n            \"meterNumber\": \"123456789\",\n            \"orderNo\": \"ELZ142211118\",\n            \"userId\": 123,\n            \"token\": 2045273083,\n            \"meterHolder\": \"gatete dieudonne\"\n}\n"
+				},
+				"url": {
+					"raw": "localhost:8087/electricity/create",
+					"host": [
+						"localhost"
+					],
+					"port": "8087",
+					"path": [
+						"electricity",
+						"create"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "createElectricityOfferBill",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"type": "text",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"userId\":\"123\",\n\t\"meterNumber\":\"123456789\",\n\t\"amount\":\"4800\"\n}\n"
+				},
+				"url": {
+					"raw": "localhost:8087/electricity/createoffer",
+					"host": [
+						"localhost"
+					],
+					"port": "8087",
+					"path": [
+						"electricity",
+						"createoffer"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "getAllElectricity",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"userId\":\"123\",\n\t\"page\":\"2\",\n\t\"count\":\"2\"\n}"
+				},
+				"url": {
+					"raw": "localhost:8097/electricity/get",
+					"host": [
+						"localhost"
+					],
+					"port": "8097",
+					"path": [
+						"electricity",
+						"get"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "createWaterBill",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"amount\": 5000,\n    \"meterNumber\": \"123456789\",\n    \"orderNo\": \"Top123118111355\",\n    \"userId\": 123,\n    \"meterHolder\": \"gatete dieudonne\",\n    \"volume\": 250\n}"
+				},
+				"url": {
+					"raw": "localhost:8087/water/acceptcreate",
+					"host": [
+						"localhost"
+					],
+					"port": "8087",
+					"path": [
+						"water",
+						"acceptcreate"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "createWaterOfferBill",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"type": "text",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"userId\":\"123\",\n\t\"amount\":\"5000\",\n\t\"meterNumber\":\"123456789\"\n}"
+				},
+				"url": {
+					"raw": "localhost:8087/water/create",
+					"host": [
+						"localhost"
+					],
+					"port": "8087",
+					"path": [
+						"water",
+						"create"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "getWaterBills",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"userId\":\"123\",\n\t\"page\":\"2\",\n\t\"count\":\"2\"\n}"
+				},
+				"url": {
+					"raw": "localhost:8097/water/get",
+					"host": [
+						"localhost"
+					],
+					"port": "8097",
+					"path": [
+						"water",
+						"get"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "topUpCreate",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"userId\":\"12\",\n\t\"phoneNumber\":\"07888\",\n\t\"companyName\":\"2\",\n\t\"amount\":\"100\"\n}"
+				},
+				"url": {
+					"raw": "localhost:8087/totup/create",
+					"host": [
+						"localhost"
+					],
+					"port": "8087",
+					"path": [
+						"totup",
+						"create"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "getALlTopup",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "userId",
+							"value": "12",
+							"type": "text"
+						},
+						{
+							"key": "page",
+							"value": "3",
+							"type": "text"
+						},
+						{
+							"key": "count",
+							"value": "1",
+							"type": "text"
+						}
+					]
+				},
+				"url": {
+					"raw": "localhost:8097/totup/get",
+					"host": [
+						"localhost"
+					],
+					"port": "8097",
+					"path": [
+						"totup",
+						"get"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "topupstatics",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": ""
+				},
+				"url": {
+					"raw": "localhost:8097/totup/statics",
+					"host": [
+						"localhost"
+					],
+					"port": "8097",
+					"path": [
+						"totup",
+						"statics"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "statics of electriocotyu",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": ""
+				},
+				"url": {
+					"raw": "localhost:8097/electricity/statics",
+					"host": [
+						"localhost"
+					],
+					"port": "8097",
+					"path": [
+						"electricity",
+						"statics"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "waterStatics",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": ""
+				},
+				"url": {
+					"raw": "localhost:8097/water/statics",
+					"host": [
+						"localhost"
+					],
+					"port": "8097",
+					"path": [
+						"water",
+						"statics"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "localhost:8097/totup/exit",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": ""
+				},
+				"url": {
+					"raw": "localhost:8097/totup/exit",
+					"host": [
+						"localhost"
+					],
+					"port": "8097",
+					"path": [
+						"totup",
+						"exit"
+					],
+					"query": [
+						{
+							"key": "",
+							"value": "for exiting only"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "getAllEllectricityTickets",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": ""
+				},
+				"url": {
+					"raw": "localhost:8097/electricity/all",
+					"host": [
+						"localhost"
+					],
+					"port": "8097",
+					"path": [
+						"electricity",
+						"all"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "countElectricity",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": ""
+				},
+				"url": {
+					"raw": "localhost:8097/electricity/count",
+					"host": [
+						"localhost"
+					],
+					"port": "8097",
+					"path": [
+						"electricity",
+						"count"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "allWaterOrders",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": ""
+				},
+				"url": {
+					"raw": "localhost:8097/water/all",
+					"host": [
+						"localhost"
+					],
+					"port": "8097",
+					"path": [
+						"water",
+						"all"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "watercount",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": ""
+				},
+				"url": {
+					"raw": "localhost:8097/water/count",
+					"host": [
+						"localhost"
+					],
+					"port": "8097",
+					"path": [
+						"water",
+						"count"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "topUpCount",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": ""
+				},
+				"url": {
+					"raw": "localhost:8097/totup/count",
+					"host": [
+						"localhost"
+					],
+					"port": "8097",
+					"path": [
+						"totup",
+						"count"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "allTopup",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {},
+				"url": {
+					"raw": "localhost:8097/totup/all",
+					"host": [
+						"localhost"
+					],
+					"port": "8097",
+					"path": [
+						"totup",
+						"all"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "ElectricityFindById",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {},
+				"url": {
+					"raw": "localhost:8097/electricity/getById?userId=1",
+					"host": [
+						"localhost"
+					],
+					"port": "8097",
+					"path": [
+						"electricity",
+						"getById"
+					],
+					"query": [
+						{
+							"key": "userId",
+							"value": "1"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "waterFindById",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": ""
+				},
+				"url": {
+					"raw": "localhost:8097/water/getById?id=1",
+					"host": [
+						"localhost"
+					],
+					"port": "8097",
+					"path": [
+						"water",
+						"getById"
+					],
+					"query": [
+						{
+							"key": "id",
+							"value": "1"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "countAllBustickets",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": ""
+				},
+				"url": {
+					"raw": "localhost:8097/tickets/countAll",
+					"host": [
+						"localhost"
+					],
+					"port": "8097",
+					"path": [
+						"tickets",
+						"countAll"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "allEllectricityOrdersInDBCount",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": ""
+				},
+				"url": {
+					"raw": "localhost:8097/electricity/countAll",
+					"host": [
+						"localhost"
+					],
+					"port": "8097",
+					"path": [
+						"electricity",
+						"countAll"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "allWaterOrdersInDBCount Copy",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": ""
+				},
+				"url": {
+					"raw": "localhost:8097/water/countAll",
+					"host": [
+						"localhost"
+					],
+					"port": "8097",
+					"path": [
+						"water",
+						"countAll"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "allBusTicketOrdersInDBCount Copy Copy",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": ""
+				},
+				"url": {
+					"raw": ""
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "allTopUpOrdersInDBCount Copy Copy",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": ""
+				},
+				"url": {
+					"raw": "localhost:8097/totup/countAll",
+					"host": [
+						"localhost"
+					],
+					"port": "8097",
+					"path": [
+						"totup",
+						"countAll"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "getByIdTotup",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "id",
+							"value": "1",
+							"type": "text"
+						}
+					]
+				},
+				"url": {
+					"raw": "localhost:8097/totup/getById",
+					"host": [
+						"localhost"
+					],
+					"port": "8097",
+					"path": [
+						"totup",
+						"getById"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "getALlTickets",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": ""
+				},
+				"url": {
+					"raw": "localhost:8097/tickets/all",
+					"host": [
+						"localhost"
+					],
+					"port": "8097",
+					"path": [
+						"tickets",
+						"all"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "login",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": ""
+				},
+				"url": {
+					"raw": ""
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "logout",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": ""
+				},
+				"url": {
+					"raw": "localhost:8097/user/logout?token=1.3401738982966402USER51.39041538865203",
+					"host": [
+						"localhost"
+					],
+					"port": "8097",
+					"path": [
+						"user",
+						"logout"
+					],
+					"query": [
+						{
+							"key": "token",
+							"value": "1.3401738982966402USER51.39041538865203"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "login",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": ""
+				},
+				"url": {
+					"raw": "localhost:8097/user/login?name=wewe&password=0000&token",
+					"host": [
+						"localhost"
+					],
+					"port": "8097",
+					"path": [
+						"user",
+						"login"
+					],
+					"query": [
+						{
+							"key": "name",
+							"value": "wewe"
+						},
+						{
+							"key": "password",
+							"value": "0000"
+						},
+						{
+							"key": "token",
+							"value": null
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "AllUsers",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": ""
+				},
+				"url": {
+					"raw": "localhost:8097/user/users?token=1.3401738982966402USER51.39041538865203",
+					"host": [
+						"localhost"
+					],
+					"port": "8097",
+					"path": [
+						"user",
+						"users"
+					],
+					"query": [
+						{
+							"key": "token",
+							"value": "1.3401738982966402USER51.39041538865203"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "AllAdmins",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": ""
+				},
+				"url": {
+					"raw": "localhost:8097/user/admins?token=0.5015590170184117ADMIN55.137364342501286",
+					"host": [
+						"localhost"
+					],
+					"port": "8097",
+					"path": [
+						"user",
+						"admins"
+					],
+					"query": [
+						{
+							"key": "token",
+							"value": "0.5015590170184117ADMIN55.137364342501286"
+						}
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}

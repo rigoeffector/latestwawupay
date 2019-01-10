@@ -1,0 +1,191 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+		
+		<title>Pike Admin - Free Bootstrap 4 Admin Template</title>
+		<meta name="description" content="Free Bootstrap 4 Admin Theme | Pike Admin">
+		<meta name="author" content="Pike Web Development - https://www.pikephp.com">
+
+		<!-- Favicon -->
+		<link rel="shortcut icon" href="assets/images/favicon.ico">
+
+		<!-- Bootstrap CSS -->
+		<link href="assets/css/bootstrap.min.css" rel="stylesheet" type="text/css" />
+		
+		<!-- Font Awesome CSS -->
+		<link href="assets/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css" />
+		
+		<!-- Custom CSS -->
+		<link href="assets/css/style.css" rel="stylesheet" type="text/css" />
+		
+		<!-- BEGIN CSS for this page -->
+		<link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.16/css/dataTables.bootstrap4.min.css"/>
+		<!-- END CSS for this page -->
+
+		
+</head>
+
+<body class="" id="loginBody">
+
+    <!-- END content-page -->
+    <div class="d-flex justify-content-end">
+        <div class="col-md-4">
+            <div class="login_Fomr">
+
+        
+            <form>
+                    <div class="form-group">
+                      <label for="exampleInputEmail1">Email address</label>
+                      <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Enter email">
+                      <small id="emailHelp" class="form-text text-muted">We'll never share your email with anyone else.</small>
+                    </div>
+                    <div class="form-group">
+                      <label for="exampleInputPassword1">Password</label>
+                      <input type="password" class="form-control" id="exampleInputPassword1" placeholder="Password">
+                    </div>
+                    <div class="form-check">
+                      <input type="checkbox" class="form-check-input" id="exampleCheck1">
+                      <label class="form-check-label" for="exampleCheck1">Check me out</label>
+                    </div>
+                    <button type="submit" class="btn btn-primary">Submit</button>
+                  </form>
+                </div>
+            </div>
+    </div>
+    
+	<footer class="footer" id="myFooter">
+		<span class="text-right">
+		Copyright <a target="_blank" href="www.wawupay.com">WawuPay</a>
+		</span>
+		<span class="float-right">
+		Powered by <a target="_blank" href="http://www.hviewtech.com"><b>HviewTech G Ltd</b></a>
+		</span>
+	</footer>
+
+
+<!-- END main -->
+
+<script src="assets/js/modernizr.min.js"></script>
+<script src="assets/js/jquery.min.js"></script>
+<script src="assets/js/moment.min.js"></script>
+		
+<script src="assets/js/popper.min.js"></script>
+<script src="assets/js/bootstrap.min.js"></script>
+
+<script src="assets/js/detect.js"></script>
+<script src="assets/js/fastclick.js"></script>
+<script src="assets/js/jquery.blockUI.js"></script>
+<script src="assets/js/jquery.nicescroll.js"></script>
+
+<!-- App js -->
+<script src="assets/js/pikeadmin.js"></script>
+
+<!-- BEGIN Java Script for this page -->
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.4.0/Chart.min.js"></script>
+	<script src="https://cdn.datatables.net/1.10.16/js/jquery.dataTables.min.js"></script>
+	<script src="https://cdn.datatables.net/1.10.16/js/dataTables.bootstrap4.min.js"></script>
+
+	<!-- Counter-Up-->
+	<script src="assets/plugins/waypoints/lib/jquery.waypoints.min.js"></script>
+	<script src="assets/plugins/counterup/jquery.counterup.min.js"></script>			
+
+	<script>
+		$(document).ready(function() {
+			// data-tables
+			$('#example1').DataTable();
+					
+			// counter-up
+			$('.counter').counterUp({
+				delay: 10,
+				time: 600
+			});
+			$.ajax({
+				url:"http://localhost:8097/electricity/count",
+				method:"post",
+				dataType:"json",
+				success:function(data){
+				
+					$("#electricity_today").append("<p>"+data.RETURN_DATA.number+"&nbsp;&nbsp;&nbsp;new sales today</p>");
+				}
+			});
+
+			// count all electrictiricity
+			$.ajax({
+				url:"http://localhost:8097/electricity/countAll",
+				method:"post",
+				dataType:"json",
+				success:function(data){
+					console.log(data);
+					$("#all_electricity").append("<h1>"+data.RETURN_DATA.data+"</h1>")
+				}
+
+			});
+			// count all water
+			$.ajax({
+				url:"http://localhost:8097/water/countAll",
+				method:"post",
+				dataType:"json",
+				success:function(data){
+					console.log(data);
+					$("#all_water").append("<h1>"+data.RETURN_DATA.data+"</h1>")
+				}
+
+			});
+			// count all buses
+			$.ajax({
+				url:"http://localhost:8097/electricity/countAll",
+				method:"post",
+				dataType:"json",
+				success:function(data){
+					console.log(data);
+					// $("#all_electricity").append("<h1>"+data.RETURN_DATA.data+"</h1>")
+				}
+
+			});
+			// count all aitimes
+			$.ajax({
+				url:"http://localhost:8097/totup/countAll",
+				method:"post",
+				dataType:"json",
+				success:function(data){
+					console.log(data);
+					$("#all_mobile").append("<h1>"+data.RETURN_DATA.data+"</h1>")
+				}
+
+			});
+			$.ajax({
+				url:"http://localhost:8097/totup/count",
+				method:"post",
+				dataType:"json",
+				success:function(data){
+				
+					$("#mobile_today").append("<p>"+data.RETURN_DATA.number+"&nbsp;&nbsp;&nbsp;new sales today</p>");
+				}
+			});
+			$.ajax({
+				url:"http://localhost:8097/water/count",
+				method:"post",
+				dataType:"json",
+				success:function(data){
+				
+					$("#water_today").append("<p>"+data.RETURN_DATA.number+"&nbsp;&nbsp;&nbsp;new sales today</p>");
+				}
+			});
+			$.ajax({
+				url:"http://localhost:8097/water/count",
+				method:"post",
+				dataType:"json",
+				success:function(data){
+				
+					$("#bus_today").append("<p>"+data.RETURN_DATA.number+"&nbsp;&nbsp;&nbsp;new sales today</p>");
+				}
+			})
+		} );		
+	</script>
+<!-- END Java Script for this page -->
+<script src="./assets/js/wawupay.js">
+</script>
+</body>
+</html>

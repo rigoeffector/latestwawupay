@@ -23,6 +23,7 @@
 		<!-- BEGIN CSS for this page -->
 		<link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.16/css/dataTables.bootstrap4.min.css"/>
 		<!-- END CSS for this page -->
+
 		
 </head>
 
@@ -180,8 +181,8 @@
 											<div class="card-box noradius noborder bg-default">
 													<i class="fa fa-bar-chart float-right text-white"></i>
 													<h6 class="text-white text-uppercase m-b-20">Bus Tickets </h6>
-													<h1 class="m-b-20 text-white counter">1,587</h1>
-													<span class="text-white">15 new sales today</span>
+													<h1 class="m-b-20 text-white" id="all_bus">1,587</h1>
+													<span class="text-white"id="bus_today"></span>
 											</div>
 									</div>
 
@@ -189,8 +190,8 @@
 											<div class="card-box noradius noborder bg-warning">
 													<i class="fa fa-power-off float-right text-white"></i>
 													<h6 class="text-white text-uppercase m-b-20">Mobile Airtime</h6>
-													<h1 class="m-b-20 text-white counter">250,000</h1>
-													<span class="text-white">10 new sales today</span>
+													<h1 class="m-b-20 text-white "id="all_mobile"></h1>
+													<span class="text-white" id="mobile_today"></span>
 											</div>
 									</div>
 
@@ -198,8 +199,8 @@
 											<div class="card-box noradius noborder bg-info">
 													<i class="fa fa-bar-chart float-right text-white"></i>
 													<h6 class="text-white text-uppercase m-b-20">Electricity</h6>
-													<h1 class="m-b-20 text-white counter">12,000</h1>
-													<span class="text-white">25 new sales today</span>
+													<span class="m-b-20 text-white " id="all_electricity"></span>
+													<span class="text-white" id="electricity_today"></span>
 											</div>
 									</div>
 
@@ -207,8 +208,8 @@
 											<div class="card-box noradius noborder bg-danger">
 													<i class="fa fa-tv float-right text-white"></i>
 													<h6 class="text-white text-uppercase m-b-20">Water</h6>
-													<h1 class="m-b-20 text-white counter">58,000</h1>
-													<span class="text-white">5 new sales today</span>
+													<h1 class="m-b-20 text-white" id="all_water"></h1>
+													<span class="text-white" id="water_today"></span>
 											</div>
 									</div>
 							</div>
@@ -262,7 +263,7 @@
 										</div>
 											
 										<div class="card-body">
-											<canvas id="water"></canvas>
+											<canvas id="electricity"></canvas>
 										</div>							
 										<div class="card-footer small text-muted">Updated yesterday at 11:59 PM</div>
 									</div><!-- end card-->					
@@ -276,7 +277,7 @@
 										</div>
 											
 										<div class="card-body">
-											<canvas id="electricity"></canvas>
+											<canvas id="water"></canvas>
 										</div>							
 										<div class="card-footer small text-muted">Updated yesterday at 11:59 PM</div>
 									</div><!-- end card-->					
@@ -343,180 +344,91 @@
 				delay: 10,
 				time: 600
 			});
+			$.ajax({
+				url:"http://localhost:8097/electricity/count",
+				method:"post",
+				dataType:"json",
+				success:function(data){
+				
+					$("#electricity_today").append("<p>"+data.RETURN_DATA.number+"&nbsp;&nbsp;&nbsp;new sales today</p>");
+				}
+			});
+
+			// count all electrictiricity
+			$.ajax({
+				url:"http://localhost:8097/electricity/countAll",
+				method:"post",
+				dataType:"json",
+				success:function(data){
+					console.log(data);
+					$("#all_electricity").append("<h1>"+data.RETURN_DATA.data+"</h1>")
+				}
+
+			});
+			// count all water
+			$.ajax({
+				url:"http://localhost:8097/water/countAll",
+				method:"post",
+				dataType:"json",
+				success:function(data){
+					console.log(data);
+					$("#all_water").append("<h1>"+data.RETURN_DATA.data+"</h1>")
+				}
+
+			});
+			// count all buses
+			$.ajax({
+				url:"http://localhost:8097/electricity/countAll",
+				method:"post",
+				dataType:"json",
+				success:function(data){
+					console.log(data);
+					// $("#all_electricity").append("<h1>"+data.RETURN_DATA.data+"</h1>")
+				}
+
+			});
+			// count all aitimes
+			$.ajax({
+				url:"http://localhost:8097/totup/countAll",
+				method:"post",
+				dataType:"json",
+				success:function(data){
+					console.log(data);
+					$("#all_mobile").append("<h1>"+data.RETURN_DATA.data+"</h1>")
+				}
+
+			});
+			$.ajax({
+				url:"http://localhost:8097/totup/count",
+				method:"post",
+				dataType:"json",
+				success:function(data){
+				
+					$("#mobile_today").append("<p>"+data.RETURN_DATA.number+"&nbsp;&nbsp;&nbsp;new sales today</p>");
+				}
+			});
+			$.ajax({
+				url:"http://localhost:8097/water/count",
+				method:"post",
+				dataType:"json",
+				success:function(data){
+				
+					$("#water_today").append("<p>"+data.RETURN_DATA.number+"&nbsp;&nbsp;&nbsp;new sales today</p>");
+				}
+			});
+			$.ajax({
+				url:"http://localhost:8097/water/count",
+				method:"post",
+				dataType:"json",
+				success:function(data){
+				
+					$("#bus_today").append("<p>"+data.RETURN_DATA.number+"&nbsp;&nbsp;&nbsp;new sales today</p>");
+				}
+			})
 		} );		
 	</script>
-	
-	<script>
-	var ctx1 = document.getElementById("busTickets").getContext('2d');
-	var busTickets = new Chart(ctx1, {
-		type: 'bar',
-		data: {
-			labels: ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"],
-			datasets: [{
-					label: 'Completed orders',
-					backgroundColor: '#3EB9DC',
-					data: [10, 14, 6, 7, 13, 9, 13, 16, 11, 8, 12, 9] 
-				}, {
-					label: 'All attempts',
-					backgroundColor: '#EBEFF3',
-					data: [12, 14, 6, 7, 13, 6, 13, 16, 10, 8, 11, 12]
-				}]
-				
-		},
-		options: {
-						tooltips: {
-							mode: 'index',
-							intersect: false
-						},
-						responsive: true,
-						scales: {
-							xAxes: [{
-								stacked: true,
-							}],
-							yAxes: [{
-								stacked: true
-							}]
-						}
-					}
-	});
-
-	// electricity
-	var ctx2 = document.getElementById("electricity").getContext('2d');
-	var electricity = new Chart(ctx2, {
-		type: 'bar',
-		data: {
-			labels: ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"],
-			datasets: [{
-				label: 'Amount received',
-				data: [12, 19, 3, 5, 10, 5, 13, 17, 11, 8, 11, 9],
-				backgroundColor: [
-					'rgba(255, 99, 132, 0.2)',
-					'rgba(54, 162, 235, 0.2)',
-					'rgba(255, 206, 86, 0.2)',
-					'rgba(75, 192, 192, 0.2)',
-					'rgba(153, 102, 255, 0.2)',
-					'rgba(255, 159, 64, 0.2)',
-					'rgba(255, 99, 132, 0.2)',
-					'rgba(54, 162, 235, 0.2)',
-					'rgba(255, 206, 86, 0.2)',
-					'rgba(75, 192, 192, 0.2)',
-					'rgba(153, 102, 255, 0.2)',
-					'rgba(255, 159, 64, 0.2)'				
-				],
-				borderColor: [
-					'rgba(255,99,132,1)',
-					'rgba(54, 162, 235, 1)',
-					'rgba(255, 206, 86, 1)',
-					'rgba(75, 192, 192, 1)',
-					'rgba(153, 102, 255, 1)',
-					'rgba(255, 159, 64, 1)',
-					'rgba(255,99,132,1)',
-					'rgba(54, 162, 235, 1)',
-					'rgba(255, 206, 86, 1)',
-					'rgba(75, 192, 192, 1)',
-					'rgba(153, 102, 255, 1)',
-					'rgba(255, 159, 64, 1)'
-				],
-				borderWidth: 1
-			}]
-		},
-		options: {
-			scales: {
-				yAxes: [{
-					ticks: {
-						beginAtZero:true
-					}
-				}]
-			}
-		}
-	});
-
-	var ctx3 = document.getElementById("water").getContext('2d');
-	var water = new Chart(ctx3, {
-		type: 'bar',
-		data: {
-			labels: ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"],
-			datasets: [{
-				label: 'Amount received',
-				data: [12, 19, 3, 5, 10, 5, 13, 17, 11, 8, 11, 9],
-				backgroundColor: [
-					'rgba(255, 99, 132, 0.2)',
-					'rgba(54, 162, 235, 0.2)',
-					'rgba(255, 206, 86, 0.2)',
-					'rgba(75, 192, 192, 0.2)',
-					'rgba(153, 102, 255, 0.2)',
-					'rgba(255, 159, 64, 0.2)',
-					'rgba(255, 99, 132, 0.2)',
-					'rgba(54, 162, 235, 0.2)',
-					'rgba(255, 206, 86, 0.2)',
-					'rgba(75, 192, 192, 0.2)',
-					'rgba(153, 102, 255, 0.2)',
-					'rgba(255, 159, 64, 0.2)'				
-				],
-				borderColor: [
-					'rgba(255,99,132,1)',
-					'rgba(54, 162, 235, 1)',
-					'rgba(255, 206, 86, 1)',
-					'rgba(75, 192, 192, 1)',
-					'rgba(153, 102, 255, 1)',
-					'rgba(255, 159, 64, 1)',
-					'rgba(255,99,132,1)',
-					'rgba(54, 162, 235, 1)',
-					'rgba(255, 206, 86, 1)',
-					'rgba(75, 192, 192, 1)',
-					'rgba(153, 102, 255, 1)',
-					'rgba(255, 159, 64, 1)'
-				],
-				borderWidth: 1
-			}]
-		},
-		options: {
-			scales: {
-				yAxes: [{
-					ticks: {
-						beginAtZero:true
-					}
-				}]
-			}
-		}
-	});
-
-	var ctx4 = document.getElementById("airtime").getContext('2d');
-	var airtime = new Chart(ctx4, {
-		type: 'bar',
-		data: {
-			labels: ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"],
-			datasets: [{
-					label: 'Completed orders',
-					backgroundColor: '#3EB9DC',
-					data: [10, 14, 6, 7, 13, 9, 13, 16, 11, 8, 12, 9] 
-				}, {
-					label: 'All attempts',
-					backgroundColor: '#EBEFF3',
-					data: [12, 14, 6, 7, 13, 6, 13, 16, 10, 8, 11, 12]
-				}]
-				
-		},
-		options: {
-						tooltips: {
-							mode: 'index',
-							intersect: false
-						},
-						responsive: true,
-						scales: {
-							xAxes: [{
-								stacked: true,
-							}],
-							yAxes: [{
-								stacked: true
-							}]
-						}
-					}
-	});
-
-
-	</script>
 <!-- END Java Script for this page -->
-
+<script src="./assets/js/wawupay.js">
+</script>
 </body>
 </html>

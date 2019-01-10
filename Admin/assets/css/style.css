@@ -1204,3 +1204,43 @@ a.btn:focus {
 .label-info {
     background-color: #5bc0de;
 }
+.header_info{
+  font-size: 16px;
+}
+.header_info h5{
+  color: #717880;
+  letter-spacing: 3px;
+  font-size: 16px;
+}
+h5#exampleModalLabel {
+color: brown;
+text-align: center;
+text-transform: uppercase;
+}
+.col-md-12.luggage {
+  margin: 1em 0;
+  background: #ddd;
+}
+#busesBody{
+  background-color: #ddd;
+}
+#loginBody{
+  background-image: url('../images//background.svg');
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+}
+footer#myFooter {
+  width: 100%;
+  left: 0;
+}
+.login_Fomr{
+  background-color: white;
+  padding: 30px;
+  position: relative;
+  transform: translateY(50%);
+  margin: 0 2em;
+  height: 400px;
+  border-radius: 50px 0 50px 0;
+}
+
