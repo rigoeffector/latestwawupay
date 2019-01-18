@@ -327,8 +327,9 @@
 				method:"post",
 				dataType:"json",
 				success:function(data){
-				
+					console.log(data)
 					for(var top in data.RETURN_DATA.data){
+						
             // tables.row.add([data.RETURN_DATA.data[top].amount]);
 			$("#example4").DataTable().row.add([data.RETURN_DATA.data[top].id,
 			data.RETURN_DATA.data[top].orderNo,
@@ -347,7 +348,7 @@ var ids = $(this).data('id');
 	data:"id="+ids,
 	dataType:"json",
 	success:function(data){
-		console.log(data);
+	
 	$('#more_info').append('<div class="col-md-12">\n'+
 					'<div class="header_info">\n'+
 						'<div class="row">\n'+

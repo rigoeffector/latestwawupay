@@ -4,7 +4,7 @@
 		<meta charset="utf-8">
 		<meta name="viewport" content="width=device-width, initial-scale=1.0">
 		
-		<title>Pike Admin - Free Bootstrap 4 Admin Template</title>
+		<title>Wawupay Dashboard</title>
 		<meta name="description" content="Free Bootstrap 4 Admin Theme | Pike Admin">
 		<meta name="author" content="Pike Web Development - https://www.pikephp.com">
 
@@ -24,6 +24,8 @@
 		<link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.16/css/dataTables.bootstrap4.min.css"/>
 		<!-- END CSS for this page -->
 
+		<!-- j query cdn -->
+	
 		
 </head>
 
@@ -33,24 +35,27 @@
     <div class="d-flex justify-content-end">
         <div class="col-md-4">
             <div class="login_Fomr">
-
+				<h1 id="login">Sign In</h1>
         
-            <form>
+            <form method="POST" id="myform" >
                     <div class="form-group">
-                      <label for="exampleInputEmail1">Email address</label>
-                      <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Enter email">
-                      <small id="emailHelp" class="form-text text-muted">We'll never share your email with anyone else.</small>
+                      <label for="exampleInputEmail1">User Name</label>
+                      <input type="text" class="form-control" name="name" id="username" aria-describedby="emailHelp" placeholder="Enter email">
+					  <small id="emailHelp" class="form-text text-muted">We'll never share your email with anyone else.</small>
+					  <p id="error">Fill</p>
                     </div>
                     <div class="form-group">
                       <label for="exampleInputPassword1">Password</label>
-                      <input type="password" class="form-control" id="exampleInputPassword1" placeholder="Password">
-                    </div>
-                    <div class="form-check">
-                      <input type="checkbox" class="form-check-input" id="exampleCheck1">
-                      <label class="form-check-label" for="exampleCheck1">Check me out</label>
-                    </div>
-                    <button type="submit" class="btn btn-primary">Submit</button>
-                  </form>
+                      <input type="password" class="form-control" id="password" name="password" placeholder="Password">
+					</div>
+					<div class="form-group">
+							<label for="exampleTokken">tokken</label>
+							<input type="hidden" class="form-control" id="tokken" name="token" placeholder="Password">
+						  </div>
+			
+					<button  type="submit" class="btn btn-primary signIn" >Submit</button>
+				</form>
+                  
                 </div>
             </div>
     </div>
@@ -66,14 +71,11 @@
 
 
 <!-- END main -->
-
 <script src="assets/js/modernizr.min.js"></script>
 <script src="assets/js/jquery.min.js"></script>
-<script src="assets/js/moment.min.js"></script>
-		
+<script src="assets/js/moment.min.js"></script>	
 <script src="assets/js/popper.min.js"></script>
 <script src="assets/js/bootstrap.min.js"></script>
-
 <script src="assets/js/detect.js"></script>
 <script src="assets/js/fastclick.js"></script>
 <script src="assets/js/jquery.blockUI.js"></script>
@@ -81,111 +83,47 @@
 
 <!-- App js -->
 <script src="assets/js/pikeadmin.js"></script>
-
 <!-- BEGIN Java Script for this page -->
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.4.0/Chart.min.js"></script>
 	<script src="https://cdn.datatables.net/1.10.16/js/jquery.dataTables.min.js"></script>
 	<script src="https://cdn.datatables.net/1.10.16/js/dataTables.bootstrap4.min.js"></script>
-
 	<!-- Counter-Up-->
 	<script src="assets/plugins/waypoints/lib/jquery.waypoints.min.js"></script>
 	<script src="assets/plugins/counterup/jquery.counterup.min.js"></script>			
 
-	<script>
-		$(document).ready(function() {
-			// data-tables
-			$('#example1').DataTable();
-					
-			// counter-up
-			$('.counter').counterUp({
-				delay: 10,
-				time: 600
-			});
-			$.ajax({
-				url:"http://localhost:8097/electricity/count",
-				method:"post",
-				dataType:"json",
-				success:function(data){
-				
-					$("#electricity_today").append("<p>"+data.RETURN_DATA.number+"&nbsp;&nbsp;&nbsp;new sales today</p>");
-				}
-			});
-
-			// count all electrictiricity
-			$.ajax({
-				url:"http://localhost:8097/electricity/countAll",
-				method:"post",
-				dataType:"json",
-				success:function(data){
-					console.log(data);
-					$("#all_electricity").append("<h1>"+data.RETURN_DATA.data+"</h1>")
-				}
-
-			});
-			// count all water
-			$.ajax({
-				url:"http://localhost:8097/water/countAll",
-				method:"post",
-				dataType:"json",
-				success:function(data){
-					console.log(data);
-					$("#all_water").append("<h1>"+data.RETURN_DATA.data+"</h1>")
-				}
-
-			});
-			// count all buses
-			$.ajax({
-				url:"http://localhost:8097/electricity/countAll",
-				method:"post",
-				dataType:"json",
-				success:function(data){
-					console.log(data);
-					// $("#all_electricity").append("<h1>"+data.RETURN_DATA.data+"</h1>")
-				}
-
-			});
-			// count all aitimes
-			$.ajax({
-				url:"http://localhost:8097/totup/countAll",
-				method:"post",
-				dataType:"json",
-				success:function(data){
-					console.log(data);
-					$("#all_mobile").append("<h1>"+data.RETURN_DATA.data+"</h1>")
-				}
-
-			});
-			$.ajax({
-				url:"http://localhost:8097/totup/count",
-				method:"post",
-				dataType:"json",
-				success:function(data){
-				
-					$("#mobile_today").append("<p>"+data.RETURN_DATA.number+"&nbsp;&nbsp;&nbsp;new sales today</p>");
-				}
-			});
-			$.ajax({
-				url:"http://localhost:8097/water/count",
-				method:"post",
-				dataType:"json",
-				success:function(data){
-				
-					$("#water_today").append("<p>"+data.RETURN_DATA.number+"&nbsp;&nbsp;&nbsp;new sales today</p>");
-				}
-			});
-			$.ajax({
-				url:"http://localhost:8097/water/count",
-				method:"post",
-				dataType:"json",
-				success:function(data){
-				
-					$("#bus_today").append("<p>"+data.RETURN_DATA.number+"&nbsp;&nbsp;&nbsp;new sales today</p>");
-				}
-			})
-		} );		
-	</script>
+	<!-- <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script> -->
 <!-- END Java Script for this page -->
-<script src="./assets/js/wawupay.js">
+<script>
+$(document).ready(function(){
+	$(".signIn").click(function(event){
+    var token= $("#tokken").val();
+		console.log($(this).serialize());
+		var userName = $("#username").val();
+	var pass =$("#password").val();
+		if(userName !='' || pass !=''){
+			$.ajax({
+			url:'http://localhost:8097/user/login',
+				method:'POST',
+			cache:false,
+	
+				data:$("#myform").serialize(),
+				dataType:'json',
+		
+				success:function(data){
+				console.log(data);
+			}})
+			event.preventDefault();
+		}
+	
+		else{
+		
+			alert("Fill the credentials");
+			return false;
+		}
+			
+			})
+			
+			})
 </script>
 </body>
 </html>

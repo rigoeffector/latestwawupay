@@ -203,57 +203,70 @@
 										<div class="clearfix"></div>
 								</div>
 						</div>
-				</div>
+						<div class="col-md-12">
+							<div class="container">
+						
+							<form method="POST">
+								<input type="text" id="mainserach" name="mainserach"  placeholder="Search by .................."/>
+								<div class="col-md-12">
+									<div class="row">
+										<div class="col-md-5">
+												<input type="text" id="mainserach" name="mainserach"  placeholder="Search by Starting Date"/>
+										</div>
+										<div class="col-md-5">
+												<input type="text" id="mainserach" name="mainserach"  placeholder="Search by Ending Date"/>
+										</div>
+										<div class="col-md-2">
+												<input type="submit" id="mainserach" name="mainserach"  value="Filter" class="btn btn-success"/>
+										</div>
+
+									</div>
+
+								</div>
+							</form>
+							
+							</div>
+						</div>
+				    </div>
 				<!-- end row -->
 
 
 				<div class="row">
-						
-					<div class="col-xs-12 col-sm-12 col-md-12 col-lg-6 col-xl-12">						
+					
+					<div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 col-xl-12">						
 						<div class="card mb-3">
 							<div class="card-header">
 								<h3><i class="fa fa-table"></i>Bus tickets orders history</h3>
 							</div>
 								
-							<div class="card-body">								
-								<div>
-								Toggle columns (click to show / hide columns): 
-								<a href="#" class="toggle-vis" data-column="0"><b>Ref no</b></a> | 
-								<a href="#" class="toggle-vis" data-column="1"><b>Customer Name</b></a> | 
-								<a href="#" class="toggle-vis" data-column="2"><b>Phone Number</b></a> | 
-								<a href="#" class="toggle-vis" data-column="3"><b>Destination</b></a> | 
-								<a href="#" class="toggle-vis" data-column="4"><b>Date</b></a> | 
-								<a href="#" class="toggle-vis" data-column="5"><b>Time</b></a>|
-								<a href="#" class="toggle-vis" data-column="4"><b>Agent</b></a> | 
-								<a href="#" class="toggle-vis" data-column="5"><b>Total</b></a>|
-								<a href="#" class="toggle-vis" data-column="4"><b>Payment Status</b></a> | 
-								
-								</div>
-								
-								<div class="table-responsive">
-								<table id="example3" class="table table-bordered table-hover display">
-								<thead>
-									<tr>
-										<th>Ref no</th>
+						
+						<div class="card-body">
+									
+							<div class="table-responsive">
+							<table id="example4" class="table table-bordered table-hover display">
+							<thead>
+								<tr>
+									<th>Ref no</th>
 										<th>Customer Name</th>
 										<th>Phone Number</th>
 										<th>Destination</th>
 										<th>Date</th>
 										<th>Time</th>
 										<th>Agent</th>
+										<th>Price</th>
 										<th>Total</th>
 										<th>Payment Status</th>
 										<th>Action</th>
-									</tr>
-								</thead>									
-								<tbody>
-																	
-									
-								</tbody>
-								</table>
-								</div>
+								</tr>
+							</thead>									
+							<tbody>
 							
-							</div>														
+								
+							</tbody>
+							</table>
+							</div>
+
+						</div>
 						</div><!-- end card-->					
 					</div>
 
@@ -279,8 +292,7 @@
 		</span>
 	</footer>
 
-</div>
-<!-- END main -->
+</div><!-- END main -->
 
 <script src="assets/js/modernizr.min.js"></script>
 <script src="assets/js/jquery.min.js"></script>
@@ -307,7 +319,65 @@
 		$('#example1').DataTable();
 	} );
 	// END CODE FOR BASIC DATA TABLE 
+	
+	
+	// START CODE FOR Child rows (show extra / detailed information) DATA TABLE 
+	function format ( d ) {
+		// `d` is the original data object for the row
+		return '<table cellpadding="5" cellspacing="0" border="0" style="padding-left:50px;">'+
+			'<tr>'+
+				'<td>Full name:</td>'+
+				'<td>'+d.name+'</td>'+
+			'</tr>'+
+			'<tr>'+
+				'<td>Extension number:</td>'+
+				'<td>'+d.extn+'</td>'+
+			'</tr>'+
+			'<tr>'+
+				'<td>Extra info:</td>'+
+				'<td>And any further details here (images etc)...</td>'+
+			'</tr>'+
+		'</table>';
+	}
+ 
+		$(document).ready(function() {
+			var table = $('#example2').DataTable( {
+				"ajax": "assets/data/dataTablesObjects.txt",
+				"columns": [
+					{
+						"className":      'details-control',
+						"orderable":      false,
+						"data":           null,
+						"defaultContent": ''
+					},
+					{ "data": "name" },
+					{ "data": "position" },
+					{ "data": "office" },
+					{ "data": "salary" }
+				],
+				"order": [[1, 'asc']]
+			} );
+			 
+			// Add event listener for opening and closing details
+			$('#example2 tbody').on('click', 'td.details-control', function () {
+				var tr = $(this).closest('tr');
+				var row = table.row( tr );
+		 
+				if ( row.child.isShown() ) {
+					// This row is already open - close it
+					row.child.hide();
+					tr.removeClass('shown');
+				}
+				else {
+					// Open this row
+					row.child( format(row.data()) ).show();
+					tr.addClass('shown');
+				}
+			} );
+		} );
+		// END CODE FOR Child rows (show extra / detailed information) DATA TABLE 		
 		
+				
 		
 		// START CODE Show / hide columns dynamically DATA TABLE 		
 		$(document).ready(function() {
@@ -325,62 +395,97 @@
 				// Toggle the visibility
 				column.visible( ! column.visible() );
 			} );
+		} );
+		// END CODE Show / hide columns dynamically DATA TABLE 	
+		
+		
+		// START CODE Individual column searching (text inputs) DATA TABLE 		
+		$(document).ready(function() {
+			// Setup - add a text input to each footer cell
+			$('#example4 thead th').each( function () {
+				var title = $(this).text();
+				$(this).html( '<input type="text" placeholder="Search '+title+'" />' );
+			} );
+		 
+			// DataTable
+			var table = $('#example4').DataTable();
+		 
+			// Apply the search
+			table.columns().every( function () {
+				var that = this;
+		 
+				$( 'input', this.header() ).on( 'keyup change', function () {
+					if ( that.search() !== this.value ) {
+						that
+							.search( this.value )
+							.draw();
+					}
+				} );
+			} );
+	
+		// END CODE Individual column searching (text inputs) DATA TABLE 	 	
+
+
+
 // t retrieve Data in table
 $.ajax({
-				url:"http://localhost:8097/tickets/all",
+				url:"http://167.99.89.30:8087/admin/busTicketsOrders",
 				method:"post",
 				dataType:"json",
+				async:true,
 				success:function(data){
 					console.log(data);
-					for(var top in data.RETURN_DATA.data){
+					// console.log(data.RETURN_DATA.tickets[5].agent);
+					for(var top in data.RETURN_DATA.tickets){
+						console.log(data.RETURN_DATA.tickets[top].agent);
             // tables.row.add([data.RETURN_DATA.data[top].amount]);
-			$("#example3").DataTable().row.add([data.RETURN_DATA.data[top].id,
-			data.RETURN_DATA.data[top].customerName,
-			data.RETURN_DATA.data[top].phoneNumber,
-			data.RETURN_DATA.data[top].destination,
-			data.RETURN_DATA.data[top].date,
-			data.RETURN_DATA.data[top].time,
-			data.RETURN_DATA.data[top].agent,
-			data.RETURN_DATA.data[top].totalAmount,
-			data.RETURN_DATA.data[top].paymentStatus,
-			'<button class="more btn btn-primary" data-toggle="modal" data-target="#exampleModal" data-id="'+data.RETURN_DATA.data[top].ticketId+'">Details</button>']).draw();}
+			$("#example4").DataTable().row.add([data.RETURN_DATA.tickets[top].id,
+			data.RETURN_DATA.tickets[top].customer_name,
+			data.RETURN_DATA.tickets[top].phone_number,
+			data.RETURN_DATA.tickets[top].destination,
+			data.RETURN_DATA.tickets[top].date,
+			data.RETURN_DATA.tickets[top].time,
+			data.RETURN_DATA.tickets[top].agent,
+			data.RETURN_DATA.tickets[top].price,
+			data.RETURN_DATA.tickets[top].total_amount,
+			data.RETURN_DATA.tickets[top].payment_status,
+			'<button class="more btn btn-primary" data-toggle="modal" data-target="#exampleModal" data-id="'+data.RETURN_DATA.tickets[top].id+'">Details</button>']).draw();}
 //  to retieve details of one row
 $(".more").click(function(){
 	$("#more_info").empty();
 	var ids = $(this).data('id');
-	// console.log(ids);
+	console.log(ids);
 	$.ajax({
-	url:"http://localhost:8097/tickets/info",
+	url:"http://167.99.89.30:8087/admin/busTicketsOrders",
 	method:"POST",
-	data:"ticketId="+ids,
+	data:{id:ids},
 	dataType:"json",
 	success:function(data){
 		console.log(data);
 			$('#more_info').append('<div class="col-md-12">\n'+
 					'<div class="header_info">\n'+
 						'<div class="row">\n'+
-						'<div class="col-md-6"><label>Customer Reference Number</label></div><div class="col-md-6"><h5>'+data.RETURN_DATA.data.id+'</h5></div>\n'+
+						'<div class="col-md-6"><label>Customer Reference Number</label></div><div class="col-md-6"><h5>'+data.RETURN_DATA.tickets.id+'</h5></div>\n'+
 						'<hr><div class="col-md-6"><label>UserName</label></div><div class="col-md-6"><h5>Nta column ihari</h5></div>\n'+
-						'<div class="col-md-6"><label>Customer Phone Number</label></div><div class="col-md-6"><h5>'+data.RETURN_DATA.data.phoneNumber+'</h5></div>\n'+
-						'<div class="col-md-6"><label>Customer Name </label></div><div class="col-md-6"><h5>'+data.RETURN_DATA.data.customerName+'</h5></div>\n'+
-						'<div class="col-md-6"><label>Destination </label></div><div class="col-md-6"><h5>'+data.RETURN_DATA.data.destination+' </h5></div>\n'+
-						'<div class="col-md-6"><label>Date and Time </label></div><div class="col-md-6"><h5>'+data.RETURN_DATA.data.cT+' </h5></div>\n'+
-						'<div class="col-md-6"><label>Agent Name</label></div><div class="col-md-6"><h5>'+data.RETURN_DATA.data.agent+'</h5></div>\n'+
-						'<div class="col-md-6"><label>POC Number</label></div><div class="col-md-6"><h5>'+data.RETURN_DATA.data.posId+'</h5></div>\n'+
-						'<div class="col-md-6"><label>Time to leave</label></div><div class="col-md-6"><h5>'+data.RETURN_DATA.data.tt+'</h5></div>\n'+
+						'<div class="col-md-6"><label>Customer Phone Number</label></div><div class="col-md-6"><h5>'+data.RETURN_DATA.tickets.phoneNumber+'</h5></div>\n'+
+						'<div class="col-md-6"><label>Customer Name </label></div><div class="col-md-6"><h5>'+data.RETURN_DATA.tickets.customerName+'</h5></div>\n'+
+						'<div class="col-md-6"><label>Destination </label></div><div class="col-md-6"><h5>'+data.RETURN_DATA.tickets.destination+' </h5></div>\n'+
+						'<div class="col-md-6"><label>Date and Time </label></div><div class="col-md-6"><h5>'+data.RETURN_DATA.tickets.cT+' </h5></div>\n'+
+						'<div class="col-md-6"><label>Price</label></div><div class="col-md-6"><h5>'+data.RETURN_DATA.tickets.price+' Rwf</h5></div>\n'+
+						'<div class="col-md-6"><label>Agent Name</label></div><div class="col-md-6"><h5>'+data.RETURN_DATA.tickets.agent+'</h5></div>\n'+
+						'<div class="col-md-6"><label>POC Number</label></div><div class="col-md-6"><h5>'+data.RETURN_DATA.tickets.posId+'</h5></div>\n'+
+						'<div class="col-md-6"><label>Time to leave</label></div><div class="col-md-6"><h5>'+data.RETURN_DATA.tickets.tt+'</h5></div>\n'+
 						'<div class="col-md-12 luggage"><h4>Flag Luggage</h4><div class="row">\n'+
-								'<div class="col-md-6"><label>Flag luggage Quantity</label></div><div class="col-md-6"><h5>'+data.RETURN_DATA.data.flagLuggage+'</h5></div>\n'+
-								'<div class="col-md-6"><label>Flag luggage Unit Price</label></div><div class="col-md-6"><h5>Nta Column ihari</h5></div>\n'+
-								'<div class="col-md-6"><label>Flag luggage Amount</label></div><div class="col-md-6"><h5>'+data.RETURN_DATA.data.luggagePrice+'</h5></div>\n'+
+								'<div class="col-md-6"><label>Flag luggage Quantity</label></div><div class="col-md-6"><h5>'+data.RETURN_DATA.tickets.flagLuggage+'</h5></div>\n'+
+								'<div class="col-md-6"><label>Flag luggage Amount</label></div><div class="col-md-6"><h5>'+data.RETURN_DATA.tickets.luggagePrice+'</h5></div>\n'+
 						'</div></div>\n'+
-						
 						'<div class="col-md-6"><label>Ticket Status</label></div><div class="col-md-6"><h5>Nta column ihari</h5></div>\n'+
-						'<div class="col-md-6"><label>Ticket Created time</label></div><div class="col-md-6"><h5>'+data.RETURN_DATA.data.cT+'</h5></div>\n'+
-						'<div class="col-md-6"><label>Plate Number</label></div><div class="col-md-6"><h5>'+data.RETURN_DATA.data.plate+'</h5></div>\n'+
-						'<div class="col-md-6"><label>Channel</label></div><div class="col-md-6"><h5>'+data.RETURN_DATA.data.channel+'</h5></div>\n'+
-						'<div class="col-md-6"><label>Total Amount</label></div><div class="col-md-6"><h5>'+data.RETURN_DATA.data.totalAmount+'&nbsp;Rwf</h5></div>\n'+
-						'<div class="col-md-6"><label>Payment Status</label></div><div class="col-md-6"><h5>'+data.RETURN_DATA.data.paymentStatus+'</h5></div>\n'+
-						'<div class="col-md-6"><label>Payment time</label></div><div class="col-md-6"><h5>'+data.RETURN_DATA.data.paymentTime+'</h5></div>\n'+
+						'<div class="col-md-6"><label>Ticket Created time</label></div><div class="col-md-6"><h5>'+data.RETURN_DATA.tickets.cT+'</h5></div>\n'+
+						'<div class="col-md-6"><label>Plate Number</label></div><div class="col-md-6"><h5>'+data.RETURN_DATA.tickets.plate+'</h5></div>\n'+
+						'<div class="col-md-6"><label>Channel</label></div><div class="col-md-6"><h5>'+data.RETURN_DATA.tickets.channel+'</h5></div>\n'+
+						'<div class="col-md-6"><label>Payment Status</label></div><div class="col-md-6"><h5>'+data.RETURN_DATA.tickets.paymentStatus+'</h5></div>\n'+
+						'<div class="col-md-6"><label>Payment time</label></div><div class="col-md-6"><h5>'+data.RETURN_DATA.tickets.paymentTime+'</h5></div>\n'+
+						'<div class="col-md-6"><label><h3>Total Amount</h3></label></div><div class="col-md-6"><h3>'+data.RETURN_DATA.tickets.totalAmount+'&nbsp;Rwf</h3></div>\n'+
 					'</div></div>\n'+
 				'</div>');
 	}
@@ -392,9 +497,61 @@ $(".more").click(function(){
 				}
 			});
 		} );
-		// END CODE Show / hide columns dynamically DATA TABLE 		 	
+		// END CODE Show / hide columns dynamically DATA TABLE 		
+
+
+
+		// MAIN SEARCH DATA fo userIUd
+		$("#mainserach").keyup(function(){
+			var searchResult = $('#mainserach').val();
+			console.log(searchResult);
+			$.ajax({
+			url:"http://167.99.89.30:8087/admin/busTicketsOrders",
+			method:"POST",
+			dataType:"json",
+			data:{
+				userId:searchResult
+				},
+		
+			// contentType: 'application/x-www-form-urlencoded; charset=UTF-8',
+			// data:{userId:searchResult},
+			async:true,
+			cache:false,
+			success:function(data){
+				console.log(data)
+			}});
+		});
+		$("#mainsearch").keydown(function(){
+		console.log("sawa");
+			
+		});
+		
+// search for order Id
+		$("#mainserach").keyup(function(){
+			var searchResult = $('#mainserach').val();
+			console.log(searchResult);
+			$.ajax({
+			url:"http://167.99.89.30:8087/admin/busTicketsOrders",
+			method:"POST",
+			dataType:"json",
+			data:{
+				orderId:searchResult
+				},
+		
+			// contentType: 'application/x-www-form-urlencoded; charset=UTF-8',
+			// data:{userId:searchResult},
+			async:true,
+			cache:false,
+			success:function(data){
+				console.log(data)
+			}});
+		});
+		$("#mainsearch").keydown(function(){
+		console.log("sawa");
+			
+		});
+		
 	</script>	
 <!-- END Java Script for this page -->
-
 </body>
 </html>
