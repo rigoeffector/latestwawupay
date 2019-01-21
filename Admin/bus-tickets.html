@@ -206,30 +206,32 @@
 						<div class="col-md-12">
 							<div class="container">
 						
-							<form method="POST">
-								<input type="text" id="mainserach" name="mainserach"  placeholder="Search by .................."/>
+							
+							
 								<div class="col-md-12">
 									<div class="row">
-										<div class="col-md-5">
-												<input type="text" id="mainserach" name="mainserach"  placeholder="Search by Starting Date"/>
+											<div class="col-md-3">
+													<input type="text" id="searchbyDate" name="searchbyDate"  placeholder="Search by Id"/>
+											</div>
+										<div class="col-md-3">
+												<input type="text" id="from_date" name="from_date"  placeholder="Search by Starting Date"/>
 										</div>
-										<div class="col-md-5">
-												<input type="text" id="mainserach" name="mainserach"  placeholder="Search by Ending Date"/>
+										<div class="col-md-3">
+												<input type="text" id="to_date" name="to_date"  placeholder="Search by Ending Date"/>
 										</div>
-										<div class="col-md-2">
+										<div class="col-md-3">
 												<input type="submit" id="mainserach" name="mainserach"  value="Filter" class="btn btn-success"/>
 										</div>
 
 									</div>
 
 								</div>
-							</form>
+							
 							
 							</div>
 						</div>
 				    </div>
 				<!-- end row -->
-
 
 				<div class="row">
 					
@@ -259,7 +261,8 @@
 										<th>Action</th>
 								</tr>
 							</thead>									
-							<tbody>
+							<tbody id="beforeLoader">
+
 							
 								
 							</tbody>
@@ -424,68 +427,94 @@
 			} );
 	
 		// END CODE Individual column searching (text inputs) DATA TABLE 	 	
-
-
-
+var res= {
+	loader: $('<div />' ,{ class: 'loader' }),
+	beforeLoader: $('#beforeLoader')
+};
 // t retrieve Data in table
 $.ajax({
 				url:"http://167.99.89.30:8087/admin/busTicketsOrders",
 				method:"post",
 				dataType:"json",
 				async:true,
+				beforeSend:function(){
+					res.beforeLoader.append(res.loader);
+
+				},
 				success:function(data){
 					console.log(data);
 					// console.log(data.RETURN_DATA.tickets[5].agent);
 					for(var top in data.RETURN_DATA.tickets){
-						console.log(data.RETURN_DATA.tickets[top].agent);
-            // tables.row.add([data.RETURN_DATA.data[top].amount]);
-			$("#example4").DataTable().row.add([data.RETURN_DATA.tickets[top].id,
-			data.RETURN_DATA.tickets[top].customer_name,
-			data.RETURN_DATA.tickets[top].phone_number,
-			data.RETURN_DATA.tickets[top].destination,
-			data.RETURN_DATA.tickets[top].date,
-			data.RETURN_DATA.tickets[top].time,
-			data.RETURN_DATA.tickets[top].agent,
-			data.RETURN_DATA.tickets[top].price,
-			data.RETURN_DATA.tickets[top].total_amount,
-			data.RETURN_DATA.tickets[top].payment_status,
-			'<button class="more btn btn-primary" data-toggle="modal" data-target="#exampleModal" data-id="'+data.RETURN_DATA.tickets[top].id+'">Details</button>']).draw();}
+						var paid 
+						// console.log(data.RETURN_DATA.tickets[top].agent);
+						if(data.RETURN_DATA.tickets[top].payment_status == 1)
+						{
+							data.RETURN_DATA.tickets[top].payment_status = 'Paid';
+						}
+						else{
+							data.RETURN_DATA.tickets[top].payment_status = 'Not Yet Paid';
+						}
+							        // tables.row.add([data.RETURN_DATA.data[top].amount]);
+									$("#example4").DataTable().row.add([data.RETURN_DATA.tickets[top].ticket_id,
+									data.RETURN_DATA.tickets[top].customer_name,
+									data.RETURN_DATA.tickets[top].phone_number,
+									data.RETURN_DATA.tickets[top].destination,
+									data.RETURN_DATA.tickets[top].date,
+									data.RETURN_DATA.tickets[top].time,
+									data.RETURN_DATA.tickets[top].agent,
+									data.RETURN_DATA.tickets[top].price +'&nbsp; Rwf',
+									'<b>'+data.RETURN_DATA.tickets[top].total_amount +' &nbsp; Rwf</b>',
+									data.RETURN_DATA.tickets[top].payment_status,
+									'<button class="more btn btn-success" data-toggle="modal" data-target="#exampleModal" data-id="'+data.RETURN_DATA.tickets[top].ticket_id+'"><i class="fa fa-info" aria-hidden="true"></i></button>']).draw();
+
+						
+    
+			}
 //  to retieve details of one row
 $(".more").click(function(){
+
 	$("#more_info").empty();
 	var ids = $(this).data('id');
 	console.log(ids);
 	$.ajax({
 	url:"http://167.99.89.30:8087/admin/busTicketsOrders",
 	method:"POST",
-	data:{id:ids},
+	data:{orderId:ids},
 	dataType:"json",
+
 	success:function(data){
+		if(data.RETURN_DATA.tickets[0].payment_status == 1)
+						{
+							data.RETURN_DATA.tickets[0].payment_status = 'Paid';
+						}
+						else{
+							data.RETURN_DATA.tickets[0].payment_status = 'Not Yet Paid';
+						}
 		console.log(data);
 			$('#more_info').append('<div class="col-md-12">\n'+
 					'<div class="header_info">\n'+
 						'<div class="row">\n'+
-						'<div class="col-md-6"><label>Customer Reference Number</label></div><div class="col-md-6"><h5>'+data.RETURN_DATA.tickets.id+'</h5></div>\n'+
+						'<div class="col-md-6"><label>Customer Reference Number</label></div><div class="col-md-6"><h5>'+data.RETURN_DATA.tickets[0].ticket_id+'</h5></div>\n'+
 						'<hr><div class="col-md-6"><label>UserName</label></div><div class="col-md-6"><h5>Nta column ihari</h5></div>\n'+
-						'<div class="col-md-6"><label>Customer Phone Number</label></div><div class="col-md-6"><h5>'+data.RETURN_DATA.tickets.phoneNumber+'</h5></div>\n'+
-						'<div class="col-md-6"><label>Customer Name </label></div><div class="col-md-6"><h5>'+data.RETURN_DATA.tickets.customerName+'</h5></div>\n'+
-						'<div class="col-md-6"><label>Destination </label></div><div class="col-md-6"><h5>'+data.RETURN_DATA.tickets.destination+' </h5></div>\n'+
-						'<div class="col-md-6"><label>Date and Time </label></div><div class="col-md-6"><h5>'+data.RETURN_DATA.tickets.cT+' </h5></div>\n'+
-						'<div class="col-md-6"><label>Price</label></div><div class="col-md-6"><h5>'+data.RETURN_DATA.tickets.price+' Rwf</h5></div>\n'+
-						'<div class="col-md-6"><label>Agent Name</label></div><div class="col-md-6"><h5>'+data.RETURN_DATA.tickets.agent+'</h5></div>\n'+
-						'<div class="col-md-6"><label>POC Number</label></div><div class="col-md-6"><h5>'+data.RETURN_DATA.tickets.posId+'</h5></div>\n'+
-						'<div class="col-md-6"><label>Time to leave</label></div><div class="col-md-6"><h5>'+data.RETURN_DATA.tickets.tt+'</h5></div>\n'+
+						'<div class="col-md-6"><label>Customer Phone Number</label></div><div class="col-md-6"><h5>'+data.RETURN_DATA.tickets[0].phone_number+'</h5></div>\n'+
+						'<div class="col-md-6"><label>Customer Name </label></div><div class="col-md-6"><h5>'+data.RETURN_DATA.tickets[0].customer_name+'</h5></div>\n'+
+						'<div class="col-md-6"><label>Destination </label></div><div class="col-md-6"><h5>'+data.RETURN_DATA.tickets[0].destination+' </h5></div>\n'+
+						'<div class="col-md-6"><label>Date and Time </label></div><div class="col-md-6"><h5>'+data.RETURN_DATA.tickets[0].date+' </h5></div>\n'+
+						'<div class="col-md-6"><label>Price</label></div><div class="col-md-6"><h5>'+data.RETURN_DATA.tickets[0].price+' Rwf</h5></div>\n'+
+						'<div class="col-md-6"><label>Agent Name</label></div><div class="col-md-6"><h5>'+data.RETURN_DATA.tickets[0].agent+'</h5></div>\n'+
+						'<div class="col-md-6"><label>POC Number</label></div><div class="col-md-6"><h5>'+data.RETURN_DATA.tickets[0].pos_id+'</h5></div>\n'+
+						'<div class="col-md-6"><label>Time to leave</label></div><div class="col-md-6"><h5>'+data.RETURN_DATA.tickets[0].tt+'</h5></div>\n'+
 						'<div class="col-md-12 luggage"><h4>Flag Luggage</h4><div class="row">\n'+
-								'<div class="col-md-6"><label>Flag luggage Quantity</label></div><div class="col-md-6"><h5>'+data.RETURN_DATA.tickets.flagLuggage+'</h5></div>\n'+
-								'<div class="col-md-6"><label>Flag luggage Amount</label></div><div class="col-md-6"><h5>'+data.RETURN_DATA.tickets.luggagePrice+'</h5></div>\n'+
+								'<div class="col-md-6"><label>Flag luggage Quantity</label></div><div class="col-md-6"><h5>'+data.RETURN_DATA.tickets[0].kg+' kg</h5></div>\n'+
+								'<div class="col-md-6"><label>Flag luggage Amount</label></div><div class="col-md-6"><h5>'+data.RETURN_DATA.tickets[0].luggage_price+ ' &nbsp;Frw</h5></div>\n'+
 						'</div></div>\n'+
 						'<div class="col-md-6"><label>Ticket Status</label></div><div class="col-md-6"><h5>Nta column ihari</h5></div>\n'+
-						'<div class="col-md-6"><label>Ticket Created time</label></div><div class="col-md-6"><h5>'+data.RETURN_DATA.tickets.cT+'</h5></div>\n'+
-						'<div class="col-md-6"><label>Plate Number</label></div><div class="col-md-6"><h5>'+data.RETURN_DATA.tickets.plate+'</h5></div>\n'+
-						'<div class="col-md-6"><label>Channel</label></div><div class="col-md-6"><h5>'+data.RETURN_DATA.tickets.channel+'</h5></div>\n'+
-						'<div class="col-md-6"><label>Payment Status</label></div><div class="col-md-6"><h5>'+data.RETURN_DATA.tickets.paymentStatus+'</h5></div>\n'+
-						'<div class="col-md-6"><label>Payment time</label></div><div class="col-md-6"><h5>'+data.RETURN_DATA.tickets.paymentTime+'</h5></div>\n'+
-						'<div class="col-md-6"><label><h3>Total Amount</h3></label></div><div class="col-md-6"><h3>'+data.RETURN_DATA.tickets.totalAmount+'&nbsp;Rwf</h3></div>\n'+
+						'<div class="col-md-6"><label>Ticket Created time</label></div><div class="col-md-6"><h5>'+data.RETURN_DATA.tickets[0].time+'</h5></div>\n'+
+						'<div class="col-md-6"><label>Plate Number</label></div><div class="col-md-6"><h5>'+data.RETURN_DATA.tickets[0].plate+'</h5></div>\n'+
+						'<div class="col-md-6"><label>Channel</label></div><div class="col-md-6"><h5>'+data.RETURN_DATA.tickets[0].channel+'</h5></div>\n'+
+						'<div class="col-md-6"><label>Payment Status</label></div><div class="col-md-6"><h5>'+data.RETURN_DATA.tickets[0].payment_status+'</h5></div>\n'+
+						'<div class="col-md-6"><label>Payment time</label></div><div class="col-md-6"><h5>'+data.RETURN_DATA.tickets[0].payment_time+'</h5></div>\n'+
+						'<div class="col-md-6"><label><h3>Total Amount</h3></label></div><div class="col-md-6"><h3>'+data.RETURN_DATA.tickets[0].total_amount+'&nbsp;Rwf</h3></div>\n'+
 					'</div></div>\n'+
 				'</div>');
 	}
@@ -501,7 +530,7 @@ $(".more").click(function(){
 
 
 
-		// MAIN SEARCH DATA fo userIUd
+		// MAIN SEARCH DATA fo userIUd , by date range too
 		$("#mainserach").keyup(function(){
 			var searchResult = $('#mainserach').val();
 			console.log(searchResult);
@@ -510,7 +539,8 @@ $(".more").click(function(){
 			method:"POST",
 			dataType:"json",
 			data:{
-				userId:searchResult
+				orderId:searchResult,
+
 				},
 		
 			// contentType: 'application/x-www-form-urlencoded; charset=UTF-8',
@@ -526,30 +556,10 @@ $(".more").click(function(){
 			
 		});
 		
-// search for order Id
-		$("#mainserach").keyup(function(){
-			var searchResult = $('#mainserach').val();
-			console.log(searchResult);
-			$.ajax({
-			url:"http://167.99.89.30:8087/admin/busTicketsOrders",
-			method:"POST",
-			dataType:"json",
-			data:{
-				orderId:searchResult
-				},
-		
-			// contentType: 'application/x-www-form-urlencoded; charset=UTF-8',
-			// data:{userId:searchResult},
-			async:true,
-			cache:false,
-			success:function(data){
-				console.log(data)
-			}});
-		});
-		$("#mainsearch").keydown(function(){
-		console.log("sawa");
-			
-		});
+
+
+
+		// searching by departure destrinat
 		
 	</script>	
 <!-- END Java Script for this page -->
